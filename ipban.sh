@@ -41,19 +41,17 @@ success() {
 	exit 0
 }
 iptables_restart(){
-	service iptables restart && service ip6tables restart
+	service iptables restart
 	systemctl restart netfilter-persistent.service
 	sleep 1
 }
 iptables_reset_rules(){
-	iptables -F && iptables -X && iptables -Z && ip6tables -F && ip6tables -X && ip6tables -Z 
+	iptables -F && iptables -X && iptables -Z
 	iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 	iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-	ip6tables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-	ip6tables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 }
 iptables_save_restart(){
-	iptables-save > /etc/iptables/rules.v4 && ip6tables-save > /etc/iptables/rules.v6
+	iptables-save > /etc/iptables/rules.v4
 	iptables_restart
 }
 uninstall_ipban(){
@@ -101,7 +99,7 @@ cat > "/usr/share/ipban/ipban-update.sh" << EOF
 	/usr/libexec/xtables-addons/xt_geoip_build -s
 	/usr/lib/xtables-addons/xt_geoip_build -D /usr/share/xt_geoip/
 	cd && rm /usr/share/xt_geoip/dbip-country-lite.csv
-	service iptables restart && service ip6tables restart
+	service iptables restart
 	systemctl restart netfilter-persistent.service
 	clear && echo "Updated IPBAN!" 
 EOF
@@ -111,22 +109,18 @@ chmod +x "/usr/share/ipban/ipban-update.sh"
 iptables_rules(){
 	if [[ ${NOICMP} == *"y"* ]]; then
 		iptables -A INPUT -p icmp -j DROP
-		ip6tables -A INPUT -p icmp -j DROP
 	fi	
 	
 	if [[ ${IO} == *"I"* ]]; then
 		iptables -A INPUT -m geoip --src-cc "${GEOIP}" -j "${LIMIT}"
-		ip6tables -A INPUT -m geoip --src-cc "${GEOIP}" -j "${LIMIT}"
 	fi
 	
 	if [[ ${IO} == *"O"* ]]; then
 		iptables  -A OUTPUT -m geoip --dst-cc "${GEOIP}" -j "${LIMIT}"
-		ip6tables -A OUTPUT -m geoip --dst-cc "${GEOIP}" -j "${LIMIT}"
 	fi
 		
 	if [[ ${IO} == *"F"* ]]; then
 		iptables -A FORWARD -m geoip --dst-cc "${GEOIP}" -j "${LIMIT}"
-		ip6tables -A FORWARD -m geoip --dst-cc "${GEOIP}" -j "${LIMIT}"
 	fi
 }
 
