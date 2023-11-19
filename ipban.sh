@@ -1,7 +1,7 @@
 #!/bin/bash
 # v2.0 github.com/AliDbg/IPBAN ######### Linux Debian11-12 - Ubuntu20-22
-#bash ./ipban.sh -install yes -io OUTPUT -geoip CN,IR,CU,VN -limit DROP -noicmp yes
-#bash ./ipban.sh -add yes -io INPUT -geoip CN -limit DROP
+#bash ./ipban.sh -install yes -io OUTPUT -geoip CN,IR -limit DROP -noicmp no
+#bash ./ipban.sh -add yes
 #bash ./ipban.sh -reset yes
 #bash ./ipban.sh -remove yes
 ##################################################################
