@@ -44,5 +44,4 @@ sudo rm -rvf /etc/paths.d/go
   systemctl daemon-reload
   systemctl enable mtg
   systemctl start mtg
-  systemctl status mtg
   mtg access /etc/mtg.toml
