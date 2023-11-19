@@ -6,8 +6,8 @@ if [[ $EUID -ne 0 ]]; then
     echo "This script must be run with root access."
     exit 1
   fi
+  echo "Please enter root password and run script again."
   su root
-  echo "Enter root password:"
 fi
 clear
 
