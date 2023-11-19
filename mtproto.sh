@@ -28,5 +28,9 @@ clear
   make static
 
   # MTG mtproto config
-  cd /usr/local/bin/mtg
-  
+  sudo wget -p /etc/mtg.toml https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
+  sudo wget -p /etc/systemd/system/mtg.service https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.service
+  sudo systemctl daemon-reload
+  sudo systemctl enable mtg
+  sudo systemctl start mtg
+  sudo systemctl status mtg
