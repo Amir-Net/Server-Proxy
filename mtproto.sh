@@ -37,8 +37,8 @@ sudo rm -rvf /etc/paths.d/go
   go install github.com/9seconds/mtg/v2@latest
 
   # MTG mtproto config
-  wget -p /etc https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
-  wget -p /etc/systemd/system https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.service
+  wget -P /etc https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
+  wget -P /etc/systemd/system https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.service
 
   # MTG mtproto runing
   systemctl daemon-reload
