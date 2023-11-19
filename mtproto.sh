@@ -9,6 +9,12 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
+# Old Golang uninstall
+sudo apt-get -y remove golang
+sudo apt-get -y remove golang-go
+sudo rm -rvf /usr/local/go/
+sudo rm -rvf /etc/paths.d/go
+  
  # Golang install
   cd ~
   sudo wget https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
@@ -20,16 +26,20 @@ clear
 
  # MTG mtproto installer
   sudo wget https://github.com/9seconds/mtg/releases/download/v2.1.7/mtg-2.1.7-linux-amd64.tar.gz
-  sudo tar -C /usr/local/bin -xzf mtg-2.1.7-linux-amd64.tar.gz
-  sudo mv /usr/local/bin/mtg-2.1.7-linux-amd64 /usr/local/bin/mtg
+  sudo tar -xzf mtg-2.1.7-linux-amd64.tar.gz
+  sudo cp mtg /usr/local/bin
+  sudo cp mtg /bin
+  chmod +x /usr/local/bin/mtg
+  chmod +x /bin/mtg
   sudo rm mtg-2.1.7-linux-amd64.tar.gz
+  
   git clone https://github.com/9seconds/mtg.git
   cd mtg
   make static
 
   # MTG mtproto config
-  sudo wget -p /etc/mtg.toml https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
-  sudo wget -p /etc/systemd/system/mtg.service https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.service
+  sudo wget -p /etc https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
+  sudo wget -p /etc/systemd/system https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.service
   sudo systemctl daemon-reload
   sudo systemctl enable mtg
   sudo systemctl start mtg
