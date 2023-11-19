@@ -30,7 +30,7 @@ sudo rm -rvf /etc/paths.d/go
   wget https://github.com/9seconds/mtg/releases/download/v2.1.7/mtg-2.1.7-linux-amd64.tar.gz
   tar -xzf mtg-2.1.7-linux-amd64.tar.gz
   cp mtg-2.1.7-linux-amd64/mtg /usr/local/bin
-  cp  mtg-2.1.7-linux-amd64/mtg /bin
+  cp mtg-2.1.7-linux-amd64/mtg /bin
   chmod +x /usr/local/bin/mtg
   chmod +x /bin/mtg
   rm mtg-2.1.7-linux-amd64.tar.gz
