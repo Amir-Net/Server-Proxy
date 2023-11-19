@@ -34,7 +34,7 @@ sudo rm -rvf /etc/paths.d/go
   chmod +x /usr/local/bin/mtg
   chmod +x /bin/mtg
   rm mtg-2.1.7-linux-amd64.tar.gz
-  go install github.com/9seconds/mtg/v2@latest
+  # go install github.com/9seconds/mtg/v2@latest
 
   # MTG mtproto config
   wget -P /etc https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
