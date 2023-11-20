@@ -58,7 +58,7 @@ uninstall_ipban(){
 	crontab -l | grep -v "ipban-update.sh" | crontab -
 	systemctl stop netfilter-persistent.service && systemctl disable netfilter-persistent.service
 	iptables_reset_rules
-	rm /etc/iptables/rules.v4 && rm /etc/iptables/rules.v6
+	rm /etc/iptables/rules.v4
 	iptables-save
 	rm -rf /usr/share/ipban/
 	success "Uninstalled IPBAN!"
