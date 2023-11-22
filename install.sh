@@ -61,6 +61,7 @@ system_ipban() {
 
 # 3-Function to Install Telegram Proxy
 install_mtproto_panel() {
+local mtproto_choice
   dialog --title "Install Telegram Proxy" --menu "Select a Telegram Proxy to Install:" 15 60 8 \
     "1" "Telegram Proxy by Officials | C-Lang" \
     "2" "Telegram Proxy by Alexbers | Python" \
