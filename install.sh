@@ -89,7 +89,7 @@ install_mtproto_panel() {
 install_ssh_panel() {
   dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
-    "2" "SSH-Panel | Vahid" > vpn_choice.txt
+    "2" "SSH-Panel | Vahid" > ssh_choice.txt
      
   ssh_choice=$(cat ssh_choice.txt)
 
