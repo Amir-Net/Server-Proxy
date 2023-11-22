@@ -44,6 +44,18 @@ system_update() {
   fi
 }
 
+# 2-Function to IP-baning
+system_ipban() {
+  dialog --title "System IP-baning" --yesno "This operation will IP-ban system. Do you want to proceed?" 10 60
+  response=$?
+  
+  if [ $response -eq 0 ]; then
+  bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/ipban.sh)"
+    dialog --msgbox "IP-baning completed." 10 60
+  else
+    dialog --msgbox "SIP-baning operation canceled." 10 60
+  fi
+}
 
 # 5-Function to Install Multiprotocol VPN Panel
 install_vpn_panel() {
