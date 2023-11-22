@@ -96,7 +96,7 @@ local mtproto_choice
 # 4-Function to Install SSH Panel
 install_ssh_panel() {
 local ssh_choice
-  dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
+  dialog --title "Install SSH-Protocol Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
     "2" "SSH-Panel | Vahid" 2> ssh_choice.txt
      
@@ -120,7 +120,42 @@ local ssh_choice
   # Return to the menu
 }
 
-# 5-Function to Install Multiprotocol VPN Panel
+# 5-Function to Install Sing-Box
+install_sing_panel() {
+local sing_choice
+  dialog --title "Install Multi Sing-Box Panel" --menu "Select a Sing-Box to Install:" 15 60 8 \
+    "1" "Reality Installer | Deathline94" \
+    "2" "TUIC Installer | Deathline94" \
+    "3" "Hysteria2 Installer | Deathline94" \
+    "4" "Juicity Installer | Deathline94" 2> sing_choice.txt
+     
+  sing_choice=$(cat sing_choice.txt)
+
+  case $sing_choice in
+    "1")
+    bash <(curl -fsSL https://github.com/deathline94/sing-REALITY-Box/raw/main/sing-REALITY-box.sh)
+      ;;
+    "2")
+    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/tuic-v5-installer/main/tuic-installer.sh)
+      ;;
+    "3")
+    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Hysteria2-Installer/main/hysteria.sh)
+      ;;
+    "4")
+     bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Juicity-Installer/main/juicity-installer.sh)
+      ;;
+    *)
+      dialog --msgbox "Invalid choice. No SSH Panel installed." 10 40
+      return
+      ;;
+  esac
+
+  # Wait for the user to press Enter
+  read -p "Please press Enter to continue."
+  # Return to the menu
+}
+
+# 6-Function to Install Multiprotocol VPN Panel
 install_vpn_panel() {
 local vpn_choice
   dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
@@ -172,7 +207,7 @@ local vpn_choice
   # Return to the menu
 }
 
-# 6-Function to exit the script
+# 7-Function to exit the script
 exit_script() {
   clear  # Clear the terminal screen for a clean exit
   echo "Exiting the script. Goodbye!"
@@ -186,16 +221,18 @@ while true; do
     2 "Install System IP-Baning" \
     3 "Install Telegram Proxy" \
     4 "Install SSH Panel" \
-    5 "Install Multiprotocol VPN Panel" \
-    6 "Exit Proxy Installer" 3>&1 1>&2 2>&3)
+    5 "Install Sing-Box" \
+    6 "Install Multiprotocol VPN Panel" \
+    7 "Exit Proxy Installer" 3>&1 1>&2 2>&3)
 
   case $choice in
     1) system_update ;;
     2) system_ipban ;;
     3) install_mtproto_panel ;;
     4) install_ssh_panel ;;
-    5) install_vpn_panel ;;
-    6) exit_script ;;
+    5) install_sing_panel ;;
+    6) install_vpn_panel ;;
+    7) exit_script ;;
     *) echo "Invalid option. Please try again." ;;
   esac
 done
