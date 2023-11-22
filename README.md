@@ -5,6 +5,10 @@ Proxy Script Installation steps on Ubuntu Connect to your server through ssh and
 ```
 bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/install.sh)"
 ```
+or (if the above command dosen't work):
+```
+curl -O https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/install.sh && chmod +x install.sh && sed -i -e 's/\r$//' install.sh && ./install.sh
+```
 Used Projects in this script 🙏
 ```
 https://github.com/TelegramMessenger/MTProxy
