@@ -95,6 +95,7 @@ local mtproto_choice
   
 # 4-Function to Install SSH Panel
 install_ssh_panel() {
+local ssh_choice
   dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
     "2" "SSH-Panel | Vahid" 2> ssh_choice.txt
@@ -121,6 +122,7 @@ install_ssh_panel() {
 
 # 5-Function to Install Multiprotocol VPN Panel
 install_vpn_panel() {
+local vpn_choice
   dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
     "1" "X-UI | Alireza" \
     "2" "X-UI | MHSanaei" \
