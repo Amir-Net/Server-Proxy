@@ -26,7 +26,7 @@ if [[ $EUID -ne 0 ]]; then
   fi
 fi
 
-# 1-Function to system updates and cleanup
+# 1. Function to perform system updates and cleanup
 system_update() {
   dialog --title "System Update and Cleanup" --yesno "This operation will update your system and remove unnecessary packages. Do you want to proceed?" 10 60
   response=$?
@@ -37,7 +37,7 @@ system_update() {
     sudo apt autoremove -y
     sudo apt autoclean -y
     sudo apt clean -y
-    clear
+
     dialog --msgbox "System updates and cleanup completed." 10 60
   else
     dialog --msgbox "System updates and cleanup operation canceled." 10 60
@@ -50,7 +50,7 @@ system_ipban() {
   response=$?
   
   if [ $response -eq 0 ]; then
-bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/ipban.sh)"
+  bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/ipban.sh)"
     dialog --msgbox "IP-baning completed." 10 60
   else
     dialog --msgbox "SIP-baning operation canceled." 10 60
