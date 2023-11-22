@@ -63,7 +63,7 @@ install_mtproto_panel() {
     "1" "Telegram Proxy by Officials | C-Lang" \
     "2" "Telegram Proxy by Alexbers | Python" \
     "3" "Telegram Proxy by Seriyps | Er-Lang" \
-    "4" "Telegram Proxy by 9seconds | Go-Lang" > mtproto_choice.txt  
+    "4" "Telegram Proxy by 9seconds | Go-Lang" 2> mtproto_choice.txt  
   mtproto_choice=$(cat mtproto_choice.txt)
 
   case $mtproto_choice in
@@ -89,7 +89,7 @@ install_mtproto_panel() {
 install_ssh_panel() {
   dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
-    "2" "SSH-Panel | Vahid" > ssh_choice.txt
+    "2" "SSH-Panel | Vahid" 2> ssh_choice.txt
      
   ssh_choice=$(cat ssh_choice.txt)
 
