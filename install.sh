@@ -87,6 +87,11 @@ install_mtproto_panel() {
       ;;
   esac
   
+  # Wait for the user to press Enter
+  read -p "Please press Enter to continue."
+  # Return to the menu
+  }
+  
 # 4-Function to Install SSH Panel
 install_ssh_panel() {
   dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
@@ -161,7 +166,6 @@ install_vpn_panel() {
 
   # Wait for the user to press Enter
   read -p "Please press Enter to continue."
-
   # Return to the menu
 }
 
