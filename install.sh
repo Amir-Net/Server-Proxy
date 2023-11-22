@@ -44,7 +44,20 @@ system_update() {
   fi
 }
 
-# 2-Function to Install Telegram Proxy
+# 2-Function to IP-baning
+system_ipban() {
+  dialog --title "System IP-baning" --yesno "This operation will IP-ban system. Do you want to proceed?" 10 60
+  response=$?
+  
+  if [ $response -eq 0 ]; then
+bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/ipban.sh)"
+    dialog --msgbox "IP-baning completed." 10 60
+  else
+    dialog --msgbox "SIP-baning operation canceled." 10 60
+  fi
+}
+
+# 3-Function to Install Telegram Proxy
 install_mtproto_panel() {
   dialog --title "Install Telegram Proxy" --menu "Select a Telegram Proxy to Install:" 15 60 8 \
     "1" "Telegram Proxy by Officials | C-Lang" \
@@ -72,7 +85,7 @@ install_mtproto_panel() {
       ;;
   esac
   
-# 2-Function to Install SSH Panel
+# 4-Function to Install SSH Panel
 install_ssh_panel() {
   dialog --title "Install Multiprotocol SSH Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
@@ -98,7 +111,7 @@ install_ssh_panel() {
   # Return to the menu
 }
 
-# 3-Function to Install Multiprotocol VPN Panel
+# 5-Function to Install Multiprotocol VPN Panel
 install_vpn_panel() {
   dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
     "1" "X-UI | Alireza" \
@@ -150,7 +163,7 @@ install_vpn_panel() {
   # Return to the menu
 }
 
-# 4-Function to exit the script
+# 6-Function to exit the script
 exit_script() {
   clear  # Clear the terminal screen for a clean exit
   echo "Exiting the script. Goodbye!"
@@ -161,50 +174,19 @@ exit_script() {
 while true; do
   choice=$(dialog --clear --backtitle "Proxy Installer - Main Menu" --title "Main Menu" --menu "Choose an option:" 18 60 15 \
     1 "System Update and Cleanup" \
-    
-    8 "Install Multiprotocol VPN Panels" \
-    9 "Obtain SSL Certificates" \
-    10 "Setup Pi-Hole" \
-    11 "Change SSH Port" \
-    12 "Enable UFW" \
-    13 "Install & Configure WARP Proxy" \
-    14 "Setup MTProto Proxy" \
-    15 "Setup/Manage Hysteria II" \
-    16 "Setup/Manage TUIC v5" \
-    17 "Setup/Manage Juicity" \
-    18 "Setup/Manage WireGuard" \
-    19 "Setup/Manage OpenVPN" \
-    20 "Setup IKEv2/IPsec" \
-    21 "Setup Reverse TLS Tunnel" \
-    22 "Create SSH User" \
-    23 "Reboot System" \
-    24 "Exit Script" 3>&1 1>&2 2>&3)
+    2 "Install System IP-Baning" \
+    3 "Install Telegram Proxy" \
+    4 "Install SSH Panel" \
+    5 "Install Multiprotocol VPN Panel" \
+    6 "Exit Proxy Installer" 3>&1 1>&2 2>&3)
 
   case $choice in
     1) system_update ;;
-    2) install_essential_packages ;;
-    3) install_speedtest ;;
-    4) create_swap_file ;;
-    5) enable_bbr ;;
-    6) enable_hybla ;;
-    7) enable_and_configure_cron ;;
-    8) install_vpn_panel ;;
-    9) obtain_ssl_certificates ;;
-    10) setup_pi_hole ;;
-    11) change_ssh_port ;;
-    12) enable_ufw ;;
-    13) install_configure_warp_proxy ;;
-    14) setup_mtproto_proxy ;;
-    15) setup_hysteria_ii ;;
-    16) setup_tuic_v5 ;;
-    17) setup_juicity ;;
-    18) setup_wireguard_angristan ;;
-    19) setup_openvpn_angristan ;;
-    20) setup_ikev2_ipsec ;;
-    21) setup_reverse_tls_tunnel ;;
-    22) create_ssh_user ;;
-    23) reboot_system ;;
-    24) exit_script ;;
+    2) system_ipban ;;
+    3) install_mtproto_panel ;;
+    4) install_ssh_panel ;;
+    5) install_vpn_panel ;;
+    6) exit_script ;;
     *) echo "Invalid option. Please try again." ;;
   esac
 done
