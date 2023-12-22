@@ -161,11 +161,11 @@ local vpn_choice
   dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
     "1" "X-UI | Alireza" \
     "2" "X-UI | MHSanaei" \
-    "3" "X-UI | vaxilu" \
+    "3" "X-UI | Vaxilu" \
     "4" "X-UI | FranzKafkaYu" \
     "5" "X-UI En | FranzKafkaYu" \
-    "6" "reality-ezpz | aleskxyz" \
-    "7" "Hiddify" \
+    "6" "Easy-Peasy | Aleskxyz" \
+    "7" "Hiddify | Clash" \
     "8" "Marzban | Gozargah" 2> vpn_choice.txt
      
   vpn_choice=$(cat vpn_choice.txt)
