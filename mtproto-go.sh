@@ -19,6 +19,7 @@ clear
   chmod +x /usr/local/bin/mtg
   chmod +x /bin/mtg
   rm mtg-2.1.7-linux-amd64.tar.gz
+  rm mtg-2.1.7-linux-amd64
 
   # MTG mtproto config
   wget -P /etc https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/mtg.toml
