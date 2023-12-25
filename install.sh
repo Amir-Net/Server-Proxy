@@ -90,6 +90,7 @@ local mtproto_choice
   
   # Wait for the user to press Enter
   read -p "Please press Enter to continue."
+  rm mtproto_choice.txt
   # Return to the menu
   }
   
@@ -117,6 +118,7 @@ local ssh_choice
 
   # Wait for the user to press Enter
   read -p "Please press Enter to continue."
+  rm ssh_choice.txt
   # Return to the menu
 }
 
@@ -152,6 +154,7 @@ local sing_choice
 
   # Wait for the user to press Enter
   read -p "Please press Enter to continue."
+  rm sing_choice.txt
   # Return to the menu
 }
 
@@ -204,6 +207,7 @@ local vpn_choice
 
   # Wait for the user to press Enter
   read -p "Please press Enter to continue."
+  rm vpn_choice.txt
   # Return to the menu
 }
 
