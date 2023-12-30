@@ -97,9 +97,10 @@ local mtproto_choice
 # 4-Function to Install SSH Panel
 install_ssh_panel() {
 local ssh_choice
-  dialog --title "Install SSH-Protocol Panel" --menu "Select a SSH Panel to Install:" 15 60 8 \
+  dialog --title "Install SSH Proxy" --menu "Select a SSH Panel to Install:" 15 60 8 \
     "1" "SSH-Panel | Alireza" \
-    "2" "SSH-Panel | Vahid" 2> ssh_choice.txt
+    "2" "SSH-Panel | Vahid" \
+    "3" "SSH-Manual | Amir" 2> ssh_choice.txt
      
   ssh_choice=$(cat ssh_choice.txt)
 
@@ -109,6 +110,9 @@ local ssh_choice
       ;;
     "2")
       wget -O ssh-panel-install.sh https://raw.githubusercontent.com/vfarid/ssh-panel/main/install.sh && sudo sh ssh-panel-install.sh
+      ;;
+    "3")
+      bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/ssh.sh)"
       ;;
     *)
       dialog --msgbox "Invalid choice. No SSH Panel installed." 10 40
@@ -125,7 +129,7 @@ local ssh_choice
 # 5-Function to Install Sing-Box
 install_sing_panel() {
 local sing_choice
-  dialog --title "Install Multi Sing-Box Panel" --menu "Select a Sing-Box to Install:" 15 60 8 \
+  dialog --title "Install Multi Sing-Box Proxy" --menu "Select a Sing-Box to Install:" 15 60 8 \
     "1" "Reality Installer | Deathline94" \
     "2" "TUIC Installer | Deathline94" \
     "3" "Hysteria2 Installer | Deathline94" \
