@@ -26,6 +26,26 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
+ # Prompt the user for the new SSH port
+  read -p "Enter New SSH Port:" ssh_port
+
+  # Verify that a valid port number is provided
+  if [[ $ssh_port =~ ^[0-9]+$ ]]; then
+    # Remove the '#' comment from the 'Port' line in sshd_config (if present)
+    sudo sed -i "/^#*Port/s/^#*Port/Port/" /etc/ssh/sshd_config
+
+    # Update SSH port in sshd_config
+    sudo sed -i "s/^Port .*/Port $ssh_port/" /etc/ssh/sshd_config
+
+    # Reload SSH service to apply changes
+    sudo systemctl reload sshd
+    echo "SSH port changed to $ssh_port."
+    unset ssh_port
+    read -n 1 -s -r -p "Press any key to continue"
+    else
+    echo "Invalid port number. Please provide a valid port."
+  fi
+
   # read on-login users
   read -p  "Enter your usernames (comma-separated, e.g. A,B):" user_names
   
@@ -37,3 +57,7 @@ clear
     done
   fi
   unset user_names
+  read -n 1 -s -r -p "Press any key to continue"
+  
+ # install UDP Getway
+  bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/udpgw.sh)"
