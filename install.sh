@@ -130,24 +130,32 @@ local ssh_choice
 install_sing_panel() {
 local sing_choice
   dialog --title "Install Multi Sing-Box Proxy" --menu "Select a Sing-Box to Install:" 15 60 8 \
-    "1" "Reality Installer | Deathline94" \
-    "2" "TUIC Installer | Deathline94" \
-    "3" "Hysteria2 Installer | Deathline94" \
-    "4" "Juicity Installer | Deathline94" 2> sing_choice.txt
+    "1" "AIO Installer | Yonggekkk" \
+    "2" "Naive Installer | Yonggekkk" \
+    "3" "Reality Installer | Deathline94" \
+    "4" "TUIC Installer | Deathline94" \
+    "5" "Hysteria2 Installer | Deathline94" \
+    "6" "Juicity Installer | Deathline94" 2> sing_choice.txt
      
   sing_choice=$(cat sing_choice.txt)
 
   case $sing_choice in
     "1")
-    bash <(curl -fsSL https://github.com/deathline94/sing-REALITY-Box/raw/main/sing-REALITY-box.sh)
+    bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/sing-aio.sh)"
       ;;
     "2")
-    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/tuic-v5-installer/main/tuic-installer.sh)
+    bash <(curl -Ls https://gitlab.com/rwkgyg/naiveproxy-yg/raw/main/naiveproxy.sh)
       ;;
     "3")
-    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Hysteria2-Installer/main/hysteria.sh)
+    bash <(curl -fsSL https://github.com/deathline94/sing-REALITY-Box/raw/main/sing-REALITY-box.sh)
       ;;
     "4")
+    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/tuic-v5-installer/main/tuic-installer.sh)
+      ;;
+    "5")
+    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Hysteria2-Installer/main/hysteria.sh)
+      ;;
+    "6")
      bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Juicity-Installer/main/juicity-installer.sh)
       ;;
     *)
@@ -162,22 +170,20 @@ local sing_choice
   # Return to the menu
 }
 
-# 6-Function to Install Multiprotocol VPN Panel
-install_vpn_panel() {
-local vpn_choice
-  dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
+# 6-Function to Install X-UI VPN Panel
+install_xui_panel() {
+local xui_choice
+  dialog --title "Install X-UI Panel" --menu "Select a X-UI Panel to Install:" 15 60 8 \
     "1" "X-UI | Alireza" \
     "2" "X-UI | MHSanaei" \
     "3" "X-UI | Vaxilu" \
     "4" "X-UI | FranzKafkaYu" \
     "5" "X-UI En | FranzKafkaYu" \
-    "6" "Easy-Peasy | Aleskxyz" \
-    "7" "Hiddify | Clash" \
-    "8" "Marzban | Gozargah" 2> vpn_choice.txt
+    "6" "X-UI Marzban | Gozargah" 2> xui_choice.txt
      
-  vpn_choice=$(cat vpn_choice.txt)
+  xui_choice=$(cat xui_choice.txt)
 
-  case $vpn_choice in
+  case $xui_choice in
     "1")
       bash <(curl -Ls https://raw.githubusercontent.com/alireza0/x-ui/master/install.sh)
       ;;
@@ -194,14 +200,36 @@ local vpn_choice
       bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install_en.sh)
       ;;
     "6")
-      bash <(curl -sL https://raw.githubusercontent.com/aleskxyz/reality-ezpz/master/reality-ezpz.sh)
-      ;;
-    "7")
-      bash -c "$(curl -Lfo- https://raw.githubusercontent.com/hiddify/hiddify-config/main/common/download_install.sh)"
-      ;;
-    "8")
       sudo bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install
       marzban cli admin create --sudo
+      ;;
+    *)
+      dialog --msgbox "Invalid choice. No VPN Panel installed." 10 40
+      return
+      ;;
+  esac
+
+  # Wait for the user to press Enter
+  read -p "Please press Enter to continue."
+  rm xui_choice.txt
+  # Return to the menu
+}
+
+# 7-Function to Install Multiprotocol VPN Panel
+install_vpn_panel() {
+local vpn_choice
+  dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
+    "1" "Easy-Peasy | Aleskxyz" \
+    "2" "Hiddify | Clash" 2> vpn_choice.txt
+     
+  vpn_choice=$(cat vpn_choice.txt)
+
+  case $vpn_choice in
+    "1")
+      bash <(curl -sL https://raw.githubusercontent.com/aleskxyz/reality-ezpz/master/reality-ezpz.sh)
+      ;;
+    "2")
+      bash -c "$(curl -Lfo- https://raw.githubusercontent.com/hiddify/hiddify-config/main/common/download_install.sh)"
       ;;
     *)
       dialog --msgbox "Invalid choice. No VPN Panel installed." 10 40
@@ -230,8 +258,9 @@ while true; do
     3 "Install Telegram Proxy" \
     4 "Install SSH Panel" \
     5 "Install Sing-Box" \
-    6 "Install Multiprotocol VPN Panel" \
-    7 "Exit Proxy Installer" 3>&1 1>&2 2>&3)
+    6 "Install X-UI Panel" \
+    7 "Install Multicore VPN Panel" \
+    8 "Exit Proxy Installer" 3>&1 1>&2 2>&3)
 
   case $choice in
     1) system_update ;;
@@ -239,8 +268,9 @@ while true; do
     3) install_mtproto_panel ;;
     4) install_ssh_panel ;;
     5) install_sing_panel ;;
-    6) install_vpn_panel ;;
-    7) exit_script ;;
+    6) install_xui_panel ;;
+    7) install_vpn_panel ;;
+    8) exit_script ;;
     *) echo "Invalid option. Please try again." ;;
   esac
 done
