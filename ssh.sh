@@ -26,6 +26,24 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
+# Function to print characters with delay
+print_with_delay() {
+    text="$1"
+    delay="$2"
+    for ((i=0; i<${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep $delay
+    done
+    echo
+}
+
+# Introduction animation
+echo ""
+echo ""
+print_with_delay "SSH-installer by Amir | @BabyBoss" 0.1
+echo ""
+echo ""
+
  # Prompt the user for the new SSH port
   read -p "Enter New SSH Port:" ssh_port
 
@@ -61,3 +79,7 @@ clear
   
  # install UDP Getway
   bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/udpgw.sh)"
+  read -n 1 -s -r -p "Press any key to continue"
+
+  # install TCP Tweaker
+  bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/tweaker.sh)"
