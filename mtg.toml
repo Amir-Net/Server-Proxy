@@ -18,10 +18,10 @@ debug = true
 # A secret. Please remember that mtg supports only FakeTLS mode, legacy
 # simple and secured mode are prohibited. For you it means that secret
 # should either be base64-encoded or starts with ee.
-secret = "7qwUdkrlwOJTzx88BvTsMTV3d3cudGlnZXJlci5sb2w"
+secret = "7qaKTvs4vmI3htqmn4HEQsRnb29nbGUuY29t"
 
 # Host:port pair to run proxy on.
-bind-to = "0.0.0.0:8443"
+bind-to = "0.0.0.0:443"
 
 # Defines how many concurrent connections are allowed to this proxy.
 # All other incoming connections are going to be dropped.
