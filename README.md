@@ -1,6 +1,11 @@
 # Server-Proxy
 Multi Proxy Server Script Installer
 
+Server Preparation
+```
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt clean -y
+```
+
 Proxy Script Installation steps on Ubuntu Connect to your server through ssh and copy and run the following command in the terminal
 ```
 bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Proxy/main/install.sh)"
