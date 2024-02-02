@@ -3,7 +3,7 @@ Multi Proxy Server Script Installer
 
 Server Preparation
 ```
-sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y
+apt update -y && apt upgrade -y && apt autoremove -y && apt autoclean -y
 ```
 
 Proxy Script Installation steps on Ubuntu Connect to your server through ssh and copy and run the following command in the terminal
