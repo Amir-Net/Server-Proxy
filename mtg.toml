@@ -25,7 +25,7 @@ bind-to = "0.0.0.0:443"
 
 # Defines how many concurrent connections are allowed to this proxy.
 # All other incoming connections are going to be dropped.
-concurrency = 8192
+concurrency = 8888
 
 # A size of user-space buffer for TCP to use. Since we do 2 connections,
 # then we have tcp-buffer * (4 + 2) per each connection: read/write for
@@ -44,7 +44,7 @@ concurrency = 8192
 #     Only ipv6 connectivity is used
 #   - only-ipv4:
 #     Only ipv4 connectivity is used
-prefer-ip = "prefer-ipv4"
+prefer-ip = "only-ipv4"
 
 # FakeTLS uses domain fronting protection. So it needs to know a port to
 # access.
@@ -85,7 +85,7 @@ allow-fallback-on-unknown-dc = false
 # it has to access.
 #
 # By default we use Quad9.
-doh-ip = "9.9.9.9"
+doh-ip = "8.8.8.8"
 
 # mtg can work via proxies (for now, we support only socks5). Proxy
 # configuration is done via list. So, you can specify many proxies
@@ -165,7 +165,7 @@ error-rate = 0.001
 enabled = true
 # This is a limiter for concurrency. In order to protect website
 # from overloading, we download files in this number of threads.
-download-concurrency = 2
+download-concurrency = 1
 # A list of URLs in FireHOL format (https://iplists.firehol.org/)
 # You can provider links here (starts with https:// or http://) or
 # path to a local file, but in this case it should be absolute.
@@ -186,14 +186,13 @@ update-each = "24h"
 enabled = false
 # This is a limiter for concurrency. In order to protect website
 # from overloading, we download files in this number of threads.
-download-concurrency = 2
+download-concurrency = 1
 # A list of URLs in FireHOL format (https://iplists.firehol.org/)
 # You can provider links here (starts with https:// or http://) or
 # path to a local file, but in this case it should be absolute.
 urls = [
     # "https://iplists.firehol.org/files/firehol_level1.netset",
     # "/local.file"
-
 ]
 update-each = "24h"
 
@@ -213,7 +212,7 @@ tag-format = "datadog"
 # prometheus metrics integration.
 [stats.prometheus]
 # enabled/disabled
-enabled = true
+enabled = false
 # host:port where to start http server for endpoint
 bind-to = "127.0.0.1:3129"
 # prefix of http path
