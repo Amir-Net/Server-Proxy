@@ -59,7 +59,7 @@ echo ""
     sudo systemctl reload sshd
     echo "SSH port changed to $ssh_port."
     unset ssh_port
-    read -n 1 -s -r -p "Press any key to continue"
+    read -p "Press enter key to continue"
     else
     echo "Invalid port number. Please provide a valid port."
   fi
